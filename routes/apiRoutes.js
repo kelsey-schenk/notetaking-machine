@@ -10,6 +10,7 @@ router.get('/api/notes', (req, res) => {
     res.json(results);
 });
 
+// Create new note
 router.post('/api/notes', (req,res) => {
     req.body.id = notes.length.toString();
 
@@ -20,5 +21,10 @@ router.post('/api/notes', (req,res) => {
         res.json(note);
     }
 });
+
+router.delete('/api/notes/:id', (req,res) => {
+    notes.delete(req.params.id)
+})
+
 
 module.exports = router;
