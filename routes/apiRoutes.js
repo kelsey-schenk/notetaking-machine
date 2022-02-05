@@ -17,7 +17,7 @@ router.post('/api/notes', (req,res) => {
     if (!validateNotes(req.body)) {
         res.status(400).send('The note is not property formatted');
     } else {
-        const note = createNewNote(req.body, animals);
+        const note = createNewNote(req.body, note);
         res.json(note);
     }
 });
