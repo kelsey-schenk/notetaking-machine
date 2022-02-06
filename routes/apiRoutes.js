@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { filterByQuery, validateNote, createNewNote }; 
+const { filterByQuery, validateNote, createNewNote } = require('../lib/notes');
 const { notes } = require('../public/notes');
 
 // GET NOTES
