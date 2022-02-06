@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { filterByQuery, createNewNote, validateNote }; 
-const { notes } = require('../public/notes.html');
+const { filterByQuery, validateNote, createNewNote }; 
+const { notes } = require('../public/notes');
 
 // GET NOTES
-router.get('/api/notes', (req, res) => {
+router.get('/notes', (req, res) => {
     let results = notes;
     if (req.query) {
         results = filterByQuery(req.query, results);
@@ -12,7 +12,7 @@ router.get('/api/notes', (req, res) => {
 });
 
 // Create new note
-router.post('/api/notes', (req,res) => {
+router.post('/notes', (req,res) => {
     req.body.id = notes.length.toString();
 
     if (!validateNote(req.body)) {
