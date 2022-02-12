@@ -1,13 +1,10 @@
 const router = require('express').Router();
-const { filterByQuery, validateNote, createNewNote } = require('../lib/notes');
-const { notes } = require('../public/notes');
+const {  validateNote, createNewNote } = require('../lib/notes');
+const notes = require('../db/db.json');
 
 // GET NOTES
 router.get('/notes', (req, res) => {
     let results = notes;
-    if (req.query) {
-        results = filterByQuery(req.query, results);
-    }
     res.json(results);
 });
 
@@ -18,13 +15,9 @@ router.post('/notes', (req,res) => {
     if (!validateNote(req.body)) {
         res.status(400).send('The note is not property formatted');
     } else {
-        const note = createNewNote(req.body, note);
+        const note = createNewNote(req.body);
         res.json(note);
     }
-});
-
-router.delete('/api/notes/:id', (req,res) => {
-    notes.delete(req.params.id)
 });
 
 
